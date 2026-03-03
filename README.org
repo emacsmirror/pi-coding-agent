@@ -43,23 +43,27 @@ mise use -g npm:@mariozechner/pi-coding-agent
 
 ** Tree-sitter grammars
 
-The chat buffer uses tree-sitter for markdown rendering and syntax
-highlighting of code blocks.  Two *essential* grammars (=markdown=,
-=markdown-inline=) are installed automatically on first session start.
-An additional ~20 grammars for code block languages (Python, JavaScript,
-Rust, etc.) are offered for installation via a one-time prompt.
+pi-coding-agent uses Emacs's built-in tree-sitter support to render
+markdown and highlight code blocks in the chat buffer.  This requires
+small grammar libraries to be compiled and installed — a one-time step
+that needs a C compiler (=gcc= or =cc=).
 
-To install or check grammar status later:
+On first session start, you are prompted to install the two grammars
+needed for markdown rendering.  A second prompt offers ~20 additional
+grammars for syntax highlighting inside code blocks (Python,
+JavaScript, Rust, etc.).  Both prompts appear at most once — if you
+decline, the choice is remembered.
+
+To check which grammars are installed or install them later:
 
 #+begin_src
 M-x pi-coding-agent-install-grammars
 #+end_src
 
-Individual grammars can also be installed with the built-in:
-
-#+begin_src
-M-x treesit-install-language-grammar
-#+end_src
+If you manage tree-sitter grammars outside of Emacs (e.g. via a system
+package manager), set =pi-coding-agent-essential-grammar-action= to
+=warn= to suppress the essential grammar prompt.  The optional grammar
+prompt can be dismissed once and will not reappear.
 
 * Installation
 
